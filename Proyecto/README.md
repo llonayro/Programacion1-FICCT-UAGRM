@@ -2,6 +2,12 @@
 
 Un clon clásico de **Space Invaders** implementado en **Rust** con gráficos en consola usando la crate `crossterm`.
 
+MINIMO:
+1.- Colision de los disparos con las naves enemigas.
+2.- Colision de los disparos con la nave del usuario.
+3.- Contador de vidas (al menos 3 vidas)
+4.- Colision de naves enemigas con nave del usuario.
+
 ## 🎮 **Estructuras del Juego**
 
 ```rust
