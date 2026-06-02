@@ -7,8 +7,6 @@ struct Matriz {
     celdas: [[u64; NC]; NF],
 }
 
-
-
 impl Matriz {
     fn new(nro_filas: usize, nro_columnas: usize) -> Matriz {
         Matriz {
@@ -18,7 +16,6 @@ impl Matriz {
         }
     }
 
-
     fn obt_nro_filas(&self) -> usize {
         self.nro_filas
     }
@@ -27,22 +24,56 @@ impl Matriz {
         self.nro_columnas
     }
 
-    // leer celda
     fn get_celda(&self, f: usize, c: usize) -> u64 {
         self.celdas[f][c]
     }
 
-    // escribir celda
     fn set_celda(&mut self, f: usize, c: usize, valor: u64) {
         self.celdas[f][c] = valor;
     }
 
     fn sumar(&self) -> u64 {
-        //Sumar todos los elementos de la matriz.
+        if self.nro_filas > 0 && self.nro_columnas > 0 {
+            let mut suma = 0;
+            for f in 0..self.nro_filas {
+                for c in 0..self.nro_columnas {
+                    suma += self.celdas[f][c]
+                }
+            }
+            return suma
+        }
+        return 0
     }
 
     fn pares(&self) -> u64 {
         //Devolver la cantidad de numeros pares que existen en la matriz.
+        if self.nro_filas > 0 && self.nro_columnas > 0 {
+            let mut pares = 0;
+            for f in 0..self.nro_filas {
+                for c in 0..self.nro_columnas {
+                    if self.celdas[f][c] % 2 == 0 {
+                        pares += 1
+                    }
+                }
+            }
+            return pares
+        }
+        return 0
+    }
+
+    fn mayor(&self) -> u64 {
+        if self.nro_filas > 0 && self.nro_columnas > 0 {
+            let mut mayor = self.celdas[0][0];
+            for f in 0..self.nro_filas {
+                for c in 0..self.nro_columnas {
+                    if self.celdas[f][c] > mayor {
+                        mayor = self.celdas[f][c]
+                    }
+                }
+            }
+            return mayor
+        }
+        return 0
     }
 
     // ── Mostrar ───────────────────────────────────────────────────
@@ -99,4 +130,8 @@ fn main() {
     // ── mostrar ──────────────────────────────────────────────────
     println!("Matriz original:");
     m.mostrar();
+
+    println!("  La suma de los elementos de la matriz es: {}", m.sumar());
+    println!("  La cantidad de numeros pares de la matriz es: {}", m.pares());
+    println!("  El elemento mayor de la matriz es: {}", m.mayor());
 }
